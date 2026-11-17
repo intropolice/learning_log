@@ -1,0 +1,10 @@
+{% extends 'learning_logs/base.html' %}
+{% block title %}{{ topic }} — Learning Log{% endblock %}
+{% block page_header %}<a href="{% url 'learning_logs:topics' %}" class="small">← Все темы</a><div class="d-flex flex-wrap justify-content-between align-items-center mt-3"><h1>{{ topic }}</h1><a class="btn btn-primary my-2" href="{% url 'learning_logs:new_entry' topic.id %}">+ Новая запись</a></div>{% endblock %}
+{% block content %}
+{% for entry in entries %}
+<article class="card mb-4"><header class="card-header bg-white d-flex flex-wrap justify-content-between"><time datetime="{{ entry.date_added|date:'c' }}">{{ entry.date_added|date:'d.m.Y H:i' }}</time><a href="{% url 'learning_logs:edit_entry' entry.id %}">Редактировать</a></header><div class="card-body entry-text">{{ entry.text|linebreaks }}</div></article>
+{% empty %}
+<div class="card p-5 text-center"><h2 class="h4">Первая запись — первый шаг</h2><p class="text-muted mb-0">Добавьте, что нового вы узнали по этой теме.</p></div>
+{% endfor %}
+{% endblock %}

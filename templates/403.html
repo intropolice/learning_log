@@ -1,0 +1,2 @@
+{% extends 'learning_logs/base.html' %}
+{% block page_header %}<p class="eyebrow">403</p><h1>Доступ запрещён</h1>{% endblock %}{% block content %}<p>Не удалось проверить запрос. Обновите страницу и повторите действие.</p><a class="btn btn-primary" href="{% url 'learning_logs:index' %}">На главную</a>{% endblock %}

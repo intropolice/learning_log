@@ -1,0 +1,39 @@
+{% load bootstrap4 static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Learning Log — учебный журнал{% endblock %}</title>
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'learning_logs/app.css' %}">
+</head>
+<body>
+<a class="sr-only sr-only-focusable" href="#main">Перейти к содержимому</a>
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom mb-4" aria-label="Основное меню">
+  <div class="container">
+    <a class="navbar-brand font-weight-bold" href="{% url 'learning_logs:index' %}"><span class="brand-icon" aria-hidden="true">L</span> Learning Log</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Открыть меню"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto"><li class="nav-item"><a class="nav-link" href="{% url 'learning_logs:topics' %}">Мои темы</a></li></ul>
+      <ul class="navbar-nav ml-auto align-items-md-center">
+      {% if user.is_authenticated %}
+        <li class="nav-item"><span class="navbar-text mr-3">Привет, {{ user.username }}!</span></li>
+        <li class="nav-item"><form method="post" action="{% url 'users:logout' %}">{% csrf_token %}<button class="btn btn-outline-secondary btn-sm" type="submit">Выйти</button></form></li>
+      {% else %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Войти</a></li>
+        <li class="nav-item"><a class="btn btn-primary btn-sm ml-md-3" href="{% url 'users:register' %}">Регистрация</a></li>
+      {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<main id="main" class="container pb-5">
+  <div class="mb-4">{% block page_header %}{% endblock %}</div>
+  {% bootstrap_messages %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="container py-4 border-top text-muted small">Learning Log · Учитесь. Записывайте. Возвращайтесь к важному.</footer>
+{% bootstrap_javascript jquery='full' %}
+</body>
+</html>

@@ -1,0 +1,4 @@
+{% extends 'learning_logs/base.html' %}
+{% load bootstrap4 %}
+{% block page_header %}<h1>С возвращением</h1><p class="text-muted">Войдите, чтобы продолжить свой учебный журнал.</p>{% endblock %}
+{% block content %}<div class="card form-panel"><div class="card-body p-md-4"><form method="post" action="{% url 'users:login' %}">{% csrf_token %}{% bootstrap_form form %}<input type="hidden" name="next" value="{{ next }}"><button type="submit" class="btn btn-primary">Войти</button></form><p class="mt-4 mb-0">Нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрироваться</a></p></div></div>{% endblock %}

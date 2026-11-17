@@ -1,0 +1,2 @@
+{% extends 'learning_logs/base.html' %}
+{% block page_header %}<p class="eyebrow">404</p><h1>Страница не найдена</h1>{% endblock %}{% block content %}<p>Возможно, адрес неверный или эта тема вам недоступна.</p><a class="btn btn-primary" href="{% url 'learning_logs:index' %}">На главную</a>{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'learning_logs/base.html' %}
+{% block title %}Мои темы — Learning Log{% endblock %}
+{% block page_header %}<div class="d-flex flex-wrap justify-content-between align-items-center"><div><p class="eyebrow">ВАШ ЖУРНАЛ</p><h1>Мои темы</h1></div><a class="btn btn-primary my-2" href="{% url 'learning_logs:new_topic' %}">+ Новая тема</a></div>{% endblock %}
+{% block content %}
+<div class="list-group">
+{% for topic in topics %}
+<a class="list-group-item list-group-item-action p-4" href="{% url 'learning_logs:topic' topic.id %}"><h2 class="h5 mb-2">{{ topic }}</h2><span class="text-muted small">Создана {{ topic.date_added|date:'d.m.Y H:i' }}</span></a>
+{% empty %}
+<div class="card text-center p-5"><h2 class="h4">Здесь начнётся ваше обучение</h2><p class="text-muted">Тем пока нет. Добавьте первую — например, «Python».</p><div><a class="btn btn-primary" href="{% url 'learning_logs:new_topic' %}">Создать первую тему</a></div></div>
+{% endfor %}
+</div>
+{% endblock %}

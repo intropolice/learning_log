@@ -1,0 +1,9 @@
+Django==5.2.19
+asgiref==3.13.0
+sqlparse==0.6.1
+django-bootstrap4==26.3
+beautifulsoup4==4.15.0
+soupsieve==4.1.1
+typing-extensions==4.16.0
+gunicorn==27.0.1
+whitenoise==6.12.0

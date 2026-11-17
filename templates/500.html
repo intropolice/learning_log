@@ -1,0 +1,2 @@
+{% extends 'learning_logs/base.html' %}
+{% block page_header %}<p class="eyebrow">500</p><h1>Что-то пошло не так</h1>{% endblock %}{% block content %}<p>Попробуйте открыть страницу позже.</p><a class="btn btn-primary" href="{% url 'learning_logs:index' %}">На главную</a>{% endblock %}
